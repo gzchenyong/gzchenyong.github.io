@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Cantonese Wordles</title>
+    <meta
+      name="description"
+      content="A static JavaScript Cantonese Jyutping word puzzle designed for GitHub Pages and al-folio."
+    />
+    <link rel="stylesheet" href="./assets/game.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="hero__eyebrow">Daily Cantonese Puzzle</p>
+        <h1 class="hero__title">Cantonese Wordles</h1>
+        <p class="hero__subtitle">
+          Connect adjacent letters to form Cantonese Jyutping syllables.
+        </p>
+      </header>
+
+      <main class="game-layout">
+        <section class="game-board" aria-labelledby="game-title">
+          <div class="status-card">
+            <div id="game-date" class="status-card__date"></div>
+            <div id="current-word" class="status-card__word">· · ·</div>
+          </div>
+
+          <div id="grid-shell" class="grid-shell">
+            <svg
+              id="path-overlay"
+              class="path-overlay"
+              aria-hidden="true"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            ></svg>
+            <div
+              id="grid"
+              class="grid"
+              role="grid"
+              aria-label="Cantonese word puzzle grid"
+            ></div>
+          </div>
+
+          <div class="game-actions">
+            <button id="clear-button" type="button" class="action-button action-button--ghost">
+              Clear
+            </button>
+            <button id="submit-button" type="button" class="action-button action-button--primary">
+              Submit
+            </button>
+          </div>
+
+          <p class="board-helper">
+            Tap adjacent letters horizontally, vertically, or diagonally. A cell can only be used
+            once in a word.
+          </p>
+        </section>
+
+        <aside class="game-panels">
+          <section class="panel">
+            <div class="panel__header">
+              <h2 id="game-title" class="panel__title panel__title--green">What We&apos;ve Found</h2>
+            </div>
+            <div id="found-list" class="tag-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel__header">
+              <h2 class="panel__title panel__title--red">Not Yet Found</h2>
+              <button id="tips-button" type="button" class="tips-button">Tips</button>
+            </div>
+            <div id="unfound-list" class="hint-list"></div>
+          </section>
+
+          <section class="panel panel--compact">
+            <div class="progress-row">
+              <span>Progress</span>
+              <span id="progress-text">0 / 0</span>
+            </div>
+            <div class="progress-track">
+              <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <p class="panel__caption">
+              Progress is stored locally in this browser, so the day&apos;s game survives refreshes.
+            </p>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal__card">
+        <button id="modal-close" type="button" class="modal__close" aria-label="Close dialog">
+          ×
+        </button>
+        <div id="modal-character" class="modal__character"></div>
+        <h3 id="modal-title" class="modal__title">Congratulations!</h3>
+        <p id="modal-jyutping" class="modal__jyutping"></p>
+        <p id="modal-definition" class="modal__definition"></p>
+        <blockquote id="modal-example" class="modal__example"></blockquote>
+        <button id="modal-confirm" type="button" class="action-button action-button--primary modal__confirm">
+          Continue
+        </button>
+      </div>
+    </div>
+
+    <script src="./assets/game-data.js"></script>
+    <script src="./assets/game.js"></script>
+  </body>
+</html>
